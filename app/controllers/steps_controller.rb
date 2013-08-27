@@ -3,7 +3,7 @@ class StepsController < ApplicationController
 
   # expects {:step => {...}}
   def create
-    Step.create step_params
+    Step.create step_params_with_datetime
     render :json => { :hello => "world" }.to_json
   end
 
@@ -19,6 +19,13 @@ class StepsController < ApplicationController
 
 private
   
+  def step_params_with_datetime
+    step = step_params
+    step[:start_time] =  DateTime.parse step_params[:start_time]
+    step[:end_time] =  DateTime.parse step_params[:end_time]
+    step
+  end
+
   def step_params
     params.require(:step).permit!
   end

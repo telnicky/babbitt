@@ -41,6 +41,9 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
+# bootstrap
+gem 'bootstrap-sass'
+
 # tests
 group :test, :development do
   gem 'pry-nav'

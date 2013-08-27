@@ -14,6 +14,7 @@ class StepsController < ApplicationController
   end
 
   def index
+    @steps = Step.all
   end
 
 private

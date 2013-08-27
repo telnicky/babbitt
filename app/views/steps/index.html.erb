@@ -1,2 +1,20 @@
 <h1>Steps#index</h1>
 <p>Find me in app/views/steps/index.html.erb</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Start</td>
+      <td>End</td>
+      <td>Amount</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @steps.each do |step| %>
+    <tr>
+      <td><%= step.start_time %></td>
+      <td><%= step.end_time %></td>
+      <td><%= step.amount %></td>
+    </tr>  
+  <% end %>
+  </tbody>
+</table>

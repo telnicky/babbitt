@@ -21,8 +21,8 @@ private
   
   def step_params_with_datetime
     step = step_params
-    step[:start_time] =  DateTime.parse step_params[:start_time]
-    step[:end_time] =  DateTime.parse step_params[:end_time]
+    step[:start_time] =  DateTime.parse step[:start_time]
+    step[:end_time] =  DateTime.parse step[:end_time]
     step
   end
 

@@ -1,13 +1,9 @@
 class StepsController < ApplicationController
   respond_to :json
 
-  # expects :steps => [{...}, {...}]
+  # expects {:step => {...}}
   def create
-    steps = params[:steps]
-    steps.each do |step|
-      Step.create(step)
-    end
-    
+    Step.create step_params
     render :json => { :hello => "world" }.to_json
   end
 
@@ -22,7 +18,7 @@ class StepsController < ApplicationController
 
 private
   
-  # def step_params
-  #   params.require(:step).permit!
-  # end
+  def step_params
+    params.require(:step).permit!
+  end
 end

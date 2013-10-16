@@ -1,5 +1,8 @@
 <h1>Steps#index</h1>
 <p>Find me in app/views/steps/index.html.erb</p>
+<script>
+  window.step_data = <%= @steps.map { |step| step.amount } || [] %>
+</script>
 <table class="table table-bordered">
   <thead>
     <tr>

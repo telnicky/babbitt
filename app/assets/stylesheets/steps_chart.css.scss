@@ -1,0 +1,14 @@
+
+.steps-chart {
+  rect {
+    stroke: white;
+    fill: steelblue;
+  }
+
+  g {
+    .step-value {
+     stroke: white;
+    }
+  }
+}
+

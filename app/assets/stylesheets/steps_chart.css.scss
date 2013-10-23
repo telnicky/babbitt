@@ -1,3 +1,20 @@
+text {
+  font: 10px sans-serif;
+}
+
+rect.step-background {
+  fill: white;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+}
+
 
 .steps-chart {
   rect {

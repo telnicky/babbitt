@@ -19,7 +19,6 @@ class StepsController < ApplicationController
   def index
     @steps = Step.all
     @jsonData = Step.records_to_hierarchy(:amount, @steps).to_json
-    binding.pry
   end
 
 private

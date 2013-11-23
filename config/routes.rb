@@ -1,4 +1,6 @@
 Babbitt::Application.routes.draw do
+  resources :hearts
+
   root :to => "home#index"
   get 'logs', :to => "home#logs"
   get 'documents', :to => "home#documents"

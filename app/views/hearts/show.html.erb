@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @heart.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @heart.end_time %>
+</p>
+
+<p>
+  <strong>Bpm:</strong>
+  <%= @heart.bpm %>
+</p>
+
+<p>
+  <strong>So2 sat:</strong>
+  <%= @heart.so2_sat %>
+</p>
+
+<%= link_to 'Edit', edit_heart_path(@heart) %> |
+<%= link_to 'Back', hearts_path %>

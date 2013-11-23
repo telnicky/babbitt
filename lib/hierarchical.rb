@@ -36,7 +36,7 @@ module Hierarchical
       grouped_records.collect do |k, v|
         if v.is_a? ::Hash
           { :name => __send__("_format_#{ current_category }", k) ,
-            :children => _format_grouping(v, categories[1..-1]) }
+            :children => _format_grouping(attr, categories[1..-1], v) }
         else
           { :name => k, :size => v.sum(&attr.to_sym) }
         end

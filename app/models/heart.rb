@@ -1,4 +1,4 @@
-require 'lib/hierarchical'
+require 'hierarchical'
 
 class Heart < ActiveRecord::Base
   include ::Hierarchical

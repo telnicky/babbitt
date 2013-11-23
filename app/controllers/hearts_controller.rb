@@ -4,7 +4,8 @@ class HeartsController < ApplicationController
   # GET /hearts
   # GET /hearts.json
   def index
-    @hearts = Heart.all
+    @heart_data = Heart.all.order(:start_time => :desc).limit(50)
+    @jsonData = Heart.records_to_hierarchy(:bpm, @heart_data).to_json
   end
 
   # GET /hearts/1
@@ -24,17 +25,11 @@ class HeartsController < ApplicationController
   # POST /hearts
   # POST /hearts.json
   def create
-    @heart = Heart.new(heart_params)
-
-    respond_to do |format|
-      if @heart.save
-        format.html { redirect_to @heart, notice: 'Heart was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @heart }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @heart.errors, status: :unprocessable_entity }
-      end
-    end
+    @heart = Heart.new heart_params_with_datetime
+    split_heart_by_minute(step).each(&:save!)
+    render :json => { :hello => "world" }.to_json
+  rescue Exception => e
+    render :json => { :error => e.message }.to_json
   end
 
   # PATCH/PUT /hearts/1
@@ -62,13 +57,35 @@ class HeartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_heart
-      @heart = Heart.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def heart_params
-      params.require(:heart).permit(:start_time, :end_time, :bpm, :so2_sat)
+  def heart_params_with_datetime
+    heart = heart_params
+    heart[:start_time] =  DateTime.parse heart[:start_time]
+    heart[:end_time] =  DateTime.parse heart[:end_time]
+    heart
+  end
+
+  def split_heart_by_minute(heart)
+    pulses = []
+    minute_diff = heart.end_time.minute - heart.start_time.minute
+    if minute_diff > 1
+      minute_diff.times  do | min |
+        steps << (Heart.new(:start_time => (heart.start_time + min.minute),
+                            :end_time => (heart.start_time + min.minute + 1.minute),
+                            :amount => (heart.amount / minute_diff)))
+      end
+    else
+      pulses << heart
     end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_heart
+    @heart = Heart.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def heart_params
+    params.require(:heart).permit!
+  end
 end

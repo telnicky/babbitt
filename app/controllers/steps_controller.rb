@@ -17,7 +17,7 @@ class StepsController < ApplicationController
   end
 
   def index
-    @steps = Step.all
+    @steps = Step.all.order(:start_time => :desc).limit(50)
     @jsonData = Step.records_to_hierarchy(:amount, @steps).to_json
   end
 
@@ -34,7 +34,7 @@ private
     params.require(:step).permit!
   end
 
-  def declump_step(step)
+  def split_step_by_minute(step)
     steps = []
     minute_diff = step.end_time.minute - step.start_time.minute
     if minute_diff > 1
@@ -47,5 +47,5 @@ private
       steps << step
     end
   end
- end
+end
 

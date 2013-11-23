@@ -1,9 +1,8 @@
 <h1>Steps#index</h1>
-<p>Find me in app/views/steps/index.html.erb</p>
 <script>
   window.stepData = <%= @jsonData.html_safe %>
 </script>
-<%= javascript_include_tag "step_hierarchy" %>
+<%#= javascript_include_tag "step_hierarchy" %>
 
 <table class="table table-bordered">
   <thead>
@@ -14,12 +13,12 @@
     </tr>
   </thead>
   <tbody>
-  <%# @steps.each do |step| %>
+  <% @steps.each do |step| %>
     <tr>
-      <td><%#= step.start_time %></td>
-      <td><%#= step.end_time %></td>
-      <td><%#= step.amount %></td>
-    </tr>  
-  <% #end %>
+      <td><%= step.start_time %></td>
+      <td><%= step.end_time %></td>
+      <td><%= step.amount %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

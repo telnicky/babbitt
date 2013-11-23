@@ -1,4 +1,4 @@
-<h1>Listing hearts</h1>
+<h1>Listing pulse/so2 sat</h1>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @hearts.each do |heart| %>
+    <% @heart_data.each do |heart| %>
       <tr>
         <td><%= heart.start_time %></td>
         <td><%= heart.end_time %></td>

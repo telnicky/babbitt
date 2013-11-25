@@ -26,7 +26,7 @@ class HeartsController < ApplicationController
   # POST /hearts.json
   def create
     @heart = Heart.new heart_params_with_datetime
-    split_heart_by_minute(step).each(&:save!)
+    split_heart_by_minute(@heart).each(&:save!)
     render :json => { :hello => "world" }.to_json
   rescue Exception => e
     render :json => { :error => e.message }.to_json
@@ -70,9 +70,9 @@ class HeartsController < ApplicationController
     minute_diff = heart.end_time.minute - heart.start_time.minute
     if minute_diff > 1
       minute_diff.times  do | min |
-        steps << (Heart.new(:start_time => (heart.start_time + min.minute),
-                            :end_time => (heart.start_time + min.minute + 1.minute),
-                            :amount => (heart.amount / minute_diff)))
+        pulses << (Heart.new(:start_time => (heart.start_time + min.minute),
+                             :end_time => (heart.start_time + min.minute + 1.minute),
+                             :amount => (heart.amount / minute_diff)))
       end
     else
       pulses << heart

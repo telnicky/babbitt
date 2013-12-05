@@ -1,6 +1,6 @@
 <script>
   $(function() {
-      var faye = new Faye.Client('http://localhost:9292/faye');
+      var faye = new Faye.Client('http://codoscopy.com:9292/faye');
         faye.subscribe('/steps/new', appendStep);
   });
 

@@ -1,10 +1,19 @@
-<h1>Steps#index</h1>
 <script>
-  window.stepData = <%= @jsonData.html_safe %>
+  $(function() {
+      var faye = new Faye.Client('http://localhost:9292/faye');
+        faye.subscribe('/steps/new', appendStep);
+  });
+
+  function appendStep(step) {
+    var amount = "<td>" + step.amount + "</td>",
+    end = "<td>" + step.end_time + "</td>",
+    start = "<td>" + step.start_time + "</td>",
+    row = "<tr>" + start + end + amount + "</tr>";
+    $('table.steps tbody tr:first').before(row);
+  }
 </script>
 <%#= javascript_include_tag "step_hierarchy" %>
-
-<table class="table table-bordered">
+<table class="steps table table-bordered">
   <thead>
     <tr>
       <td>Start</td>

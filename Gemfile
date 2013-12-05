@@ -44,6 +44,9 @@ end
 # bootstrap
 gem 'bootstrap-sass'
 
+gem 'thin'
+gem 'faye'
+
 # tests
 group :test, :development do
   gem 'pry-nav'

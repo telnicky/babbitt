@@ -1,0 +1,66 @@
+<script>
+  $(function() {
+      var faye = new Faye.Client('http://localhost:9292/faye');
+      faye.subscribe('/steps/new', appendStep);
+      faye.subscribe('/hearts/new', appendHeart);
+  });
+
+  function appendHeart(heart) {
+    var bpm = "<td>" + heart.bpm + "</td>",
+    so2_sat = "<td>" + heart.so2_sat + "</td>",
+    end = "<td>" + heart.end_time + "</td>",
+    start = "<td>" + heart.start_time + "</td>",
+    row = "<tr>" + start + end + bpm + so2_sat + "</tr>";
+    $('table.hearts tbody tr:first').before(row);
+  }
+
+  function appendStep(step) {
+    var amount = "<td>" + step.amount + "</td>",
+    end = "<td>" + step.end_time + "</td>",
+    start = "<td>" + step.start_time + "</td>",
+    row = "<tr>" + start + end + amount + "</tr>";
+    $('table.steps tbody tr:first').before(row);
+  }
+</script>
+<div class="container row-fluid">
+  <table class="hearts table table-bordered span6">
+    <thead>
+      <tr>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Bpm</th>
+        <th>So2 sat</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @heart_data.each do |heart| %>
+      <tr>
+      <td><%= heart.start_time %></td>
+      <td><%= heart.end_time %></td>
+      <td><%= heart.bpm %></td>
+      <td><%= heart.so2_sat %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+  <table class="steps table table-bordered span6">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @steps.each do |step| %>
+      <tr>
+      <td><%= step.start_time %></td>
+      <td><%= step.end_time %></td>
+      <td><%= step.amount %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>

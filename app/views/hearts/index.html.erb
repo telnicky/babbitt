@@ -1,15 +1,26 @@
-<h1>Listing pulse/so2 sat</h1>
+<script>
+  $(function() {
+      var faye = new Faye.Client('http://localhost:9292/faye');
+        faye.subscribe('/hearts/new', appendHeart);
+  });
 
-<table>
+  function appendHeart(heart) {
+    var bpm = "<td>" + heart.bpm + "</td>",
+    so2_sat = "<td>" + heart.so2_sat + "</td>",
+    end = "<td>" + heart.end_time + "</td>",
+    start = "<td>" + heart.start_time + "</td>",
+    row = "<tr>" + start + end + bpm + so2_sat + "</tr>";
+    $('table.hearts tbody tr:first').before(row);
+  }
+</script>
+
+<table class="hearts table table-bordered">
   <thead>
     <tr>
       <th>Start time</th>
       <th>End time</th>
       <th>Bpm</th>
       <th>So2 sat</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -25,6 +36,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Heart', new_heart_path %>

@@ -3,8 +3,7 @@
 <head>
   <title>Babbitt</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
+  <%= javascript_include_tag "application", "http://localhost:9292/faye.js", "data-turbolinks-track" => true %>
 <!-- fix this later -->
   <%#= csrf_meta_tags %>
 </head>
@@ -14,16 +13,16 @@
       <div class="navbar-inner">
         <%= link_to "Saha", "index.html", :class => "brand" %>
         <ul class="nav">
-          <li class="Saha"><%= link_to :root, root_path %></li>
+          <li class="Analytics"><%= link_to :analytics, analytics_path %></li>
           <li class="Logs"><%= link_to :logs, logs_path %></li>
-          <li class="Logs"><%= link_to :documents, documents_path %></li>
-          <li class="Logs"><%= link_to :slides, slides_path %></li>
-          <li class="Logs"><%= link_to :references, references_path %></li>
+          <li class="Documents"><%= link_to :documents, documents_path %></li>
+          <li class="Slides"><%= link_to :slides, slides_path %></li>
+          <li class="References"><%= link_to :references, references_path %></li>
         </ul>
       </div>
     </div>
   </div>
-  
+
   <div class="container">
     <%= yield %>
   </div>

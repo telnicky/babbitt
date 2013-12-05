@@ -12,6 +12,8 @@
     start = "<td>" + heart.start_time + "</td>",
     row = "<tr>" + start + end + bpm + so2_sat + "</tr>";
     $('table.hearts tbody tr:first').before(row);
+    $('.bpm').text(heart.bpm);
+    $('.so2').text(heart.so2_sat);
   }
 
   function appendStep(step) {
@@ -20,8 +22,25 @@
     start = "<td>" + step.start_time + "</td>",
     row = "<tr>" + start + end + amount + "</tr>";
     $('table.steps tbody tr:first').before(row);
+    $('.jumbotron .steps').text(step.amount);
   }
 </script>
+
+<div class="jumbotron row-fluid">
+  <div class="span4">
+    <h1 class="so2"><%= @heart_data.first.so2_sat %></h1></br>
+    <h3 class="muted">so2 sat</h3>
+  </div>
+  <div class="span4">
+    <h1 class="bpm"><%= @heart_data.first.bpm %></h1></br>
+    <h3 class="muted">bpm</h3>
+  </div>
+  <div class="span4">
+    <h1 class="steps"><%= @steps.first.amount %></h1></br>
+    <h3 class="muted">steps</h3>
+  </div>
+</div>
+
 <div class="container row-fluid">
   <table class="hearts table table-bordered span6">
     <thead>

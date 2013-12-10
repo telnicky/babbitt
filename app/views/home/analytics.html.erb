@@ -20,9 +20,11 @@
     var amount = "<td>" + step.amount + "</td>",
     end = "<td>" + step.end_time + "</td>",
     start = "<td>" + step.start_time + "</td>",
-    row = "<tr>" + start + end + amount + "</tr>";
+    row = "<tr>" + start + end + amount + "</tr>",
+    steps = $('.jumbotron .steps');
+
     $('table.steps tbody tr:first').before(row);
-    $('.jumbotron .steps').text(step.amount);
+    steps.text(parseInt(step.text(), 10) + step.amount);
   }
 </script>
 
@@ -36,7 +38,7 @@
     <h3 class="muted">bpm</h3>
   </div>
   <div class="span4">
-    <h1 class="steps"><%= @steps.first.amount %></h1></br>
+    <h1 class="steps"><%= @steps.pluck(:amount).inject(&:+)  %></h1></br>
     <h3 class="muted">steps</h3>
   </div>
 </div>

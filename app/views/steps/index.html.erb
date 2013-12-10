@@ -1,33 +1,7 @@
 <script>
-  $(function() {
-      var faye = new Faye.Client('http://codoscopy.com:9292/faye');
-        faye.subscribe('/steps/new', appendStep);
-  });
-
-  function appendStep(step) {
-    var amount = "<td>" + step.amount + "</td>",
-    end = "<td>" + step.end_time + "</td>",
-    start = "<td>" + step.start_time + "</td>",
-    row = "<tr>" + start + end + amount + "</tr>";
-    $('table.steps tbody tr:first').before(row);
-  }
+  window.stepData = <%= @jsonData.html_safe %>
+  var hierarchyData = [ window.stepData ]
 </script>
-<%#= javascript_include_tag "step_hierarchy" %>
-<table class="steps table table-bordered">
-  <thead>
-    <tr>
-      <td>Start</td>
-      <td>End</td>
-      <td>Amount</td>
-    </tr>
-  </thead>
-  <tbody>
-  <% @steps.each do |step| %>
-    <tr>
-      <td><%= step.start_time %></td>
-      <td><%= step.end_time %></td>
-      <td><%= step.amount %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+
+<%= javascript_include_tag "hierarchy" %>
+

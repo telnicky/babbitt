@@ -1,38 +1,7 @@
 <script>
-  $(function() {
-      var faye = new Faye.Client('http://codoscopy.com:9292/faye');
-        faye.subscribe('/hearts/new', appendHeart);
-  });
-
-  function appendHeart(heart) {
-    var bpm = "<td>" + heart.bpm + "</td>",
-    so2_sat = "<td>" + heart.so2_sat + "</td>",
-    end = "<td>" + heart.end_time + "</td>",
-    start = "<td>" + heart.start_time + "</td>",
-    row = "<tr>" + start + end + bpm + so2_sat + "</tr>";
-    $('table.hearts tbody tr:first').before(row);
-  }
+  window.bpmData = <%= @jsonBpmData.html_safe %>
+  window.so2Data = <%= @jsonSo2Data.html_safe %>
+  var hierarchyData = [ window.bpmData ];
 </script>
 
-<table class="hearts table table-bordered">
-  <thead>
-    <tr>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Bpm</th>
-      <th>So2 sat</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @heart_data.each do |heart| %>
-      <tr>
-        <td><%= heart.start_time %></td>
-        <td><%= heart.end_time %></td>
-        <td><%= heart.bpm %></td>
-        <td><%= heart.so2_sat %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= javascript_include_tag "hierarchy" %>

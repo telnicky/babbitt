@@ -5,7 +5,8 @@ class HeartsController < ApplicationController
   # GET /hearts.json
   def index
     @heart_data = Heart.all.order(:start_time => :desc).limit(50)
-    @jsonData = Heart.records_to_hierarchy(:bpm, @heart_data).to_json
+    @jsonBpmData = Heart.records_to_hierarchy(:bpm, @heart_data).to_json
+    @jsonSo2Data = Heart.records_to_hierarchy(:so2_sat, @heart_data).to_json
   end
 
   # GET /hearts/1

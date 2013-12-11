@@ -1,5 +1,9 @@
 Babbitt::Application.routes.draw do
 
+  resources :sleeps
+
+  resources :stresses
+
   root :to => "home#index"
   get 'analytics', :to => "home#analytics"
   get 'logs', :to => "home#logs"

@@ -1,0 +1,29 @@
+<%= form_for(@stress) do |f| %>
+  <% if @stress.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stress.errors.count, "error") %> prohibited this stress from being saved:</h2>
+
+      <ul>
+      <% @stress.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :integer %><br>
+    <%= f.text_field :integer %>
+  </div>
+  <div class="field">
+    <%= f.label :datetime %><br>
+    <%= f.text_field :datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :datetime %><br>
+    <%= f.text_field :datetime %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

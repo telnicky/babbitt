@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131123030355) do
+ActiveRecord::Schema.define(version: 20131211233442) do
 
   create_table "hearts", force: true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "bpm"
     t.integer  "so2_sat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "stress_level"
+  end
+
+  create_table "sleeps", force: true do |t|
+    t.integer  "index"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

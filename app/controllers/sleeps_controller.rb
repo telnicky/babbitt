@@ -69,6 +69,6 @@ class SleepsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sleep_params
-      params.require(:sleep).permit(:integer, :datetime, :datetime)
+      params.require(:sleep).permit(:index, :start_time, :end_time)
     end
 end

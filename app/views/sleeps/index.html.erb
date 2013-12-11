@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Integer</th>
-      <th>Datetime</th>
-      <th>Datetime</th>
+      <th>Index</th>
+      <th>Start time</th>
+      <th>End time</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @sleeps.each do |sleep| %>
       <tr>
-        <td><%= sleep.integer %></td>
-        <td><%= sleep.datetime %></td>
-        <td><%= sleep.datetime %></td>
+        <td><%= sleep.index %></td>
+        <td><%= sleep.start_time %></td>
+        <td><%= sleep.end_time %></td>
         <td><%= link_to 'Show', sleep %></td>
         <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
         <td><%= link_to 'Destroy', sleep, method: :delete, data: { confirm: 'Are you sure?' } %></td>

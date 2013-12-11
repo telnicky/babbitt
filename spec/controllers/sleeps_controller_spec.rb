@@ -23,7 +23,7 @@ describe SleepsController do
   # This should return the minimal set of attributes required to create a valid
   # Sleep. As you add validations to Sleep, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "integer" => "MyString" } }
+  let(:valid_attributes) { { "index" => "1" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe SleepsController do
       it "assigns a newly created but unsaved sleep as @sleep" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sleep.any_instance.stub(:save).and_return(false)
-        post :create, {:sleep => { "integer" => "invalid value" }}, valid_session
+        post :create, {:sleep => { "index" => "invalid value" }}, valid_session
         assigns(:sleep).should be_a_new(Sleep)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sleep.any_instance.stub(:save).and_return(false)
-        post :create, {:sleep => { "integer" => "invalid value" }}, valid_session
+        post :create, {:sleep => { "index" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe SleepsController do
         # specifies that the Sleep created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Sleep.any_instance.should_receive(:update).with({ "integer" => "MyString" })
-        put :update, {:id => sleep.to_param, :sleep => { "integer" => "MyString" }}, valid_session
+        Sleep.any_instance.should_receive(:update).with({ "index" => "1" })
+        put :update, {:id => sleep.to_param, :sleep => { "index" => "1" }}, valid_session
       end
 
       it "assigns the requested sleep as @sleep" do
@@ -128,7 +128,7 @@ describe SleepsController do
         sleep = Sleep.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Sleep.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sleep.to_param, :sleep => { "integer" => "invalid value" }}, valid_session
+        put :update, {:id => sleep.to_param, :sleep => { "index" => "invalid value" }}, valid_session
         assigns(:sleep).should eq(sleep)
       end
 
@@ -136,7 +136,7 @@ describe SleepsController do
         sleep = Sleep.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Sleep.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sleep.to_param, :sleep => { "integer" => "invalid value" }}, valid_session
+        put :update, {:id => sleep.to_param, :sleep => { "index" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

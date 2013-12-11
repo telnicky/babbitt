@@ -1,1 +1,1 @@
-json.extract! @sleep, :id, :integer, :datetime, :datetime, :created_at, :updated_at
+json.extract! @sleep, :id, :index, :start_time, :end_time, :created_at, :updated_at

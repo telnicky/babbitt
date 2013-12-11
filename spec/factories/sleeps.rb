@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :sleep do
-    integer "MyString"
-    datetime ""
-    datetime ""
+    index 1
+    start_time "2013-12-11 16:34:42"
+    end_time "2013-12-11 16:34:42"
   end
 end

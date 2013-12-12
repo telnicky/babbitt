@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211233442) do
+ActiveRecord::Schema.define(version: 20131212050238) do
 
   create_table "hearts", force: true do |t|
     t.datetime "start_time"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20131211233442) do
     t.datetime "updated_at"
     t.integer  "stress_level"
   end
+
+  add_index "hearts", ["start_time"], name: "index_hearts_on_start_time"
 
   create_table "sleeps", force: true do |t|
     t.integer  "index"

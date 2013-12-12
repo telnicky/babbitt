@@ -29,17 +29,32 @@
 </script>
 
 <div class="jumbotron row-fluid">
-  <div class="span4">
-    <h1 class="so2"><%= @heart_data.first.so2_sat %></h1></br>
-    <h3 class="muted">so2 sat</h3>
+  <div class="container row-fluid">
+    <div class="span4">
+      <h1 class="bpm"><%= @heart_data.first.try(:bpm) || 0 %></h1></br>
+      <h3 class="muted">bpm</h3>
+    </div>
+    <div class="span4">
+      <h1 class="so2">
+        <%= @heart_data.first.try(:so2_sat) || 0 %><small class="super-script">%</small>
+      </h1>
+      </br>
+      <h3 class="muted">so2 sat</h3>
+    </div>
+    <div class="span4">
+      <h1 class="stress"><%= @heart_data.first.try(:stress_level) || 0 %></h1></br>
+      <h3 class="muted">stress level</h3>
+    </div>
   </div>
-  <div class="span4">
-    <h1 class="bpm"><%= @heart_data.first.bpm %></h1></br>
-    <h3 class="muted">bpm</h3>
-  </div>
-  <div class="span4">
-    <h1 class="steps"><%= @steps.pluck(:amount).inject(&:+)  %></h1></br>
-    <h3 class="muted">steps</h3>
+  <div class="container row-fluid">
+    <div class="span6">
+      <h1 class="steps"><%= @steps.pluck(:amount).inject(&:+)  %></h1></br>
+      <h3 class="muted">steps</h3>
+    </div> 
+    <div class="span6">
+      <h1 class="steps"><%= @sleep.first.try(:index) || 0  %></h1></br>
+      <h3 class="muted">sleep index</h3>
+    </div>
   </div>
 </div>
 
@@ -51,6 +66,7 @@
         <th>End time</th>
         <th>Bpm</th>
         <th>So2 sat</th>
+        <th>stress level</th>
       </tr>
     </thead>
 
@@ -61,6 +77,7 @@
       <td><%= heart.end_time %></td>
       <td><%= heart.bpm %></td>
       <td><%= heart.so2_sat %></td>
+      <td><%= heart.stress_level %></td>
     </tr>
   <% end %>
     </tbody>

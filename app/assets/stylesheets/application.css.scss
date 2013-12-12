@@ -12,3 +12,12 @@
  *= require_tree .
  */
 @import "bootstrap";
+
+.jumbotron {
+  .super-script {
+    position: relative;
+    bottom: 2em;
+  }
+}
+
+

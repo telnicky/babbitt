@@ -24,18 +24,12 @@ class SleepsController < ApplicationController
   # POST /sleeps
   # POST /sleeps.json
   def create
-    @sleep = Sleep.new(sleep_params)
-
-    respond_to do |format|
-      if @sleep.save
-        format.html { redirect_to @sleep, notice: 'Sleep was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @sleep }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @sleep.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    @sleep = Sleep.new sleep_params_with_datetime
+    @sleep.save!
+    render :json => { :hello => "world" }.to_json
+  rescue Exception => e
+    render :json => { :error => e.message }.to_json
+  end 
 
   # PATCH/PUT /sleeps/1
   # PATCH/PUT /sleeps/1.json
@@ -67,8 +61,15 @@ class SleepsController < ApplicationController
       @sleep = Sleep.find(params[:id])
     end
 
+    def sleep_params_with_datetime
+      sleep = sleep_params
+      sleep[:start_time] =  DateTime.parse sleep[:start_time]
+      sleep[:end_time] =  DateTime.parse sleep[:end_time]
+      sleep
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def sleep_params
-      params.require(:sleep).permit(:index, :start_time, :end_time)
+      params.require(:sleep).permit!
     end
 end

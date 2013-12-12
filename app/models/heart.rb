@@ -11,11 +11,12 @@ class Heart < ActiveRecord::Base
       :end_time => self.end_time.strftime('%Y-%m-%d %H:%M:%S'),
       :start_time => self.start_time.strftime('%Y-%m-%d %H:%M:%S'),
       :bpm => self.bpm,
-      :so2_sat => self.so2_sat
+      :so2_sat => self.so2_sat,
+      :stress_level => self.stress_level
     }
 
     message = {:channel => '/hearts/new', :data => data }
-    uri = URI.parse("http://codoscopy:9292/faye")
+    uri = URI.parse("http://codoscopy.com:9292/faye")
     Net::HTTP.post_form(uri, :message => message.to_json)
   end
 end

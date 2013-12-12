@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def analytics
-    @heart_data = Heart.all.order(:start_time => :desc).limit(50)
-    @sleep = Sleep.all.order(:start_time => :desc).limit(50)
-    @steps = Step.all.order(:start_time => :desc).limit(50)
+    @heart_data = Heart.where(:start_time => ::DateTime.current.beginning_of_day..::DateTime.current).order(:start_time => :desc).limit(50)
+    @sleep = Sleep.last
+    @steps = Step.where(:start_time => ::DateTime.current.beginning_of_day..::DateTime.current).order(:start_time => :desc).limit(50)
   end
 
   def documents

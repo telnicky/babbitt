@@ -1,8 +1,9 @@
 <script>
   $(function() {
       var faye = new Faye.Client('http://codoscopy.com:9292/faye');
-      faye.subscribe('/steps/new', appendStep);
       faye.subscribe('/hearts/new', appendHeart);
+      faye.subscribe('/sleeps/new', appendSleep);
+      faye.subscribe('/steps/new', appendStep);
   });
 
   function appendHeart(heart) {
@@ -10,10 +11,17 @@
     so2_sat = "<td>" + heart.so2_sat + "</td>",
     end = "<td>" + heart.end_time + "</td>",
     start = "<td>" + heart.start_time + "</td>",
-    row = "<tr>" + start + end + bpm + so2_sat + "</tr>";
+    stress = "<td>" + heart.stress_level + "</td>",
+    row = "<tr>" + start + end + bpm + so2_sat + stress + "</tr>";
     $('table.hearts tbody tr:first').before(row);
+    $('table.hearts tbody tr:last').remove();
     $('.bpm').text(heart.bpm);
     $('.so2').text(heart.so2_sat);
+    $('.stress').text(heart.stress_level);
+  }
+
+  function appendSleep(sleep) {
+    $('.sleep').text(sleep.index);
   }
 
   function appendStep(step) {
@@ -24,7 +32,8 @@
     steps = $('.jumbotron .steps');
 
     $('table.steps tbody tr:first').before(row);
-    steps.text(parseInt(step.text(), 10) + step.amount);
+    $('table.steps tbody tr:last').remove();
+    steps.text(parseInt(steps.text(), 10) + step.amount);
   }
 </script>
 
@@ -52,7 +61,7 @@
       <h3 class="muted">steps</h3>
     </div> 
     <div class="span6">
-      <h1 class="steps"><%= @sleep.first.try(:index) || 0  %></h1></br>
+      <h1 class="sleep"><%= @sleep.try(:index) || 0  %></h1></br>
       <h3 class="muted">sleep index</h3>
     </div>
   </div>

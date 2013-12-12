@@ -11,7 +11,7 @@ class Sleep < ActiveRecord::Base
     }
 
     message = {:channel => '/sleeps/new', :data => data }
-    uri = URI.parse("http://codoscopy:9292/faye")
+    uri = URI.parse("http://codoscopy.com:9292/faye")
     Net::HTTP.post_form(uri, :message => message.to_json)
   end
 end

@@ -7,7 +7,7 @@ class Sleep < ActiveRecord::Base
     data = {
       :end_time => self.end_time.strftime('%Y-%m-%d %H:%M:%S'),
       :start_time => self.start_time.strftime('%Y-%m-%d %H:%M:%S'),
-      :index => self.index
+      :index => self.index.to_i
     }
 
     message = {:channel => '/sleeps/new', :data => data }

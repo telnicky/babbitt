@@ -14,7 +14,7 @@
     stress = "<td>" + heart.stress_level + "</td>",
     row = "<tr>" + start + end + bpm + so2_sat + stress + "</tr>";
     $('table.hearts tbody tr:first').before(row);
-    $('table.hearts tbody tr:last').remove();
+//    $('table.hearts tbody tr:last').remove();
     $('.bpm').text(heart.bpm);
     $('.so2').text(heart.so2_sat);
     $('.stress').text(heart.stress_level);
@@ -32,7 +32,7 @@
     steps = $('.jumbotron .steps');
 
     $('table.steps tbody tr:first').before(row);
-    $('table.steps tbody tr:last').remove();
+ //   $('table.steps tbody tr:last').remove();
     steps.text(parseInt(steps.text(), 10) + step.amount);
   }
 </script>
@@ -84,9 +84,9 @@
       <tr>
       <td><%= heart.start_time %></td>
       <td><%= heart.end_time %></td>
-      <td><%= heart.bpm %></td>
-      <td><%= heart.so2_sat %></td>
-      <td><%= heart.stress_level %></td>
+      <td><%= heart.bpm || 0 %></td>
+      <td><%= heart.so2_sat || 0 %></td>
+      <td><%= heart.stress_level || 0 %></td>
     </tr>
   <% end %>
     </tbody>
@@ -103,9 +103,9 @@
     <tbody>
     <% @steps.each do |step| %>
       <tr>
-      <td><%= step.start_time %></td>
-      <td><%= step.end_time %></td>
-      <td><%= step.amount %></td>
+      <td><%= step.start_time || 0 %></td>
+      <td><%= step.end_time || 0 %></td>
+      <td><%= step.amount || 0 %></td>
     </tr>
   <% end %>
     </tbody>

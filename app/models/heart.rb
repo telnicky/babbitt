@@ -10,9 +10,9 @@ class Heart < ActiveRecord::Base
     data = {
       :end_time => self.end_time.strftime('%Y-%m-%d %H:%M:%S'),
       :start_time => self.start_time.strftime('%Y-%m-%d %H:%M:%S'),
-      :bpm => self.bpm,
-      :so2_sat => self.so2_sat,
-      :stress_level => self.stress_level
+      :bpm => self.bpm.to_i,
+      :so2_sat => self.so2_sat.to_i,
+      :stress_level => self.stress_level.to_i
     }
 
     message = {:channel => '/hearts/new', :data => data }

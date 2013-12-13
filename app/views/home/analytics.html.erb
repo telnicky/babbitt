@@ -8,7 +8,7 @@
 
   function appendHeart(heart) {
     var bpm = "<td>" + heart.bpm + "</td>",
-    so2_sat = "<td>" + heart.so2_sat + "</td>",
+    so2_sat = "<td>" + heart.so2_sat / 10 + "</td>",
     end = "<td>" + heart.end_time + "</td>",
     start = "<td>" + heart.start_time + "</td>",
     stress = "<td>" + heart.stress_level + "</td>",
@@ -45,7 +45,7 @@
     </div>
     <div class="span4">
       <h1 class="so2">
-        <%= @heart_data.first.try(:so2_sat) || 0 %><small class="super-script">%</small>
+        <%= @heart_data.first.try(:so2_sat).to_i / 10 || 0 %><small class="super-script">%</small>
       </h1>
       </br>
       <h3 class="muted">so2 sat</h3>
@@ -85,7 +85,7 @@
       <td><%= heart.start_time %></td>
       <td><%= heart.end_time %></td>
       <td><%= heart.bpm || 0 %></td>
-      <td><%= heart.so2_sat || 0 %></td>
+      <td><%= heart.so2_sat.to_i / 10 || 0 %></td>
       <td><%= heart.stress_level || 0 %></td>
     </tr>
   <% end %>

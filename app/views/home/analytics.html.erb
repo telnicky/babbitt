@@ -57,7 +57,7 @@
   </div>
   <div class="container row-fluid">
     <div class="span6">
-      <h1 class="steps"><%= @steps.pluck(:amount).inject(&:+)  %></h1></br>
+      <h1 class="steps"><%= @steps.pluck(:amount).inject(&:+) || 0  %></h1></br>
       <h3 class="muted">steps</h3>
     </div> 
     <div class="span6">

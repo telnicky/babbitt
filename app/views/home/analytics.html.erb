@@ -16,7 +16,7 @@
     $('table.hearts tbody tr:first').before(row);
 //    $('table.hearts tbody tr:last').remove();
     $('.bpm').text(heart.bpm);
-    $('.so2').text(heart.so2_sat);
+    $('.so2').html((heart.so2_sat / 10) + '<small class="super-script">%</small>');
     $('.stress').text(heart.stress_level);
   }
 

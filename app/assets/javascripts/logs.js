@@ -1,4 +1,3 @@
-//= require underscore-min.js
 
 $(function() {
     var page = $("title").text();
